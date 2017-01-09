@@ -880,6 +880,20 @@ def main(_):
   print('Final test accuracy = %.1f%% (N=%d)' % (
       test_accuracy * 100, len(test_bottlenecks)))
 
+  #Log accuracy/args to file
+  with open(FLAGS.summaries_dir + "/log.txt", 'a') as f:
+      f.write("Steps %d, " +
+              "Learning Rate %f, " +
+              "Flip Left/Right %s, " +
+              "Random Crop %d, " +
+              "Random Scale %d, " +
+              "Random Brightness %d\n" & (
+          FLAGS.how_many_training_steps, FLAGS.learning_rate, FLAGS.flip_left_right,
+          FLAGS.random_crop, FLAGS.random_scale, FLAGS.random_brightness
+      ))
+      f.write('Final test accuracy = %.1f%% (N=%d) \n' % (
+      test_accuracy * 100, len(test_bottlenecks)))
+
   if FLAGS.print_misclassified_test_images:
     print('=== MISCLASSIFIED TEST IMAGES ===')
     for i, test_filename in enumerate(test_filenames):
