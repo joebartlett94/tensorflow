@@ -882,12 +882,8 @@ def main(_):
 
   #Log accuracy/args to file
   with open(FLAGS.summaries_dir + "/log.txt", 'a') as f:
-      f.write("Steps %d, " +
-              "Learning Rate %f, " +
-              "Flip Left/Right %s, " +
-              "Random Crop %d, " +
-              "Random Scale %d, " +
-              "Random Brightness %d\n" & (
+      f.write("""Steps {}, Learning Rate {}, Flip Left/Right {},
+      Random Crop {}, Random Scale {}, Random Brightness {} \n""".format(
           FLAGS.how_many_training_steps, FLAGS.learning_rate, FLAGS.flip_left_right,
           FLAGS.random_crop, FLAGS.random_scale, FLAGS.random_brightness
       ))
