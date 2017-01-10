@@ -811,9 +811,10 @@ def main(_):
 
   # Merge all the summaries and write them out to /tmp/retrain_logs (by default)
   merged = tf.summary.merge_all()
-  train_writer = tf.summary.FileWriter(FLAGS.summaries_dir + '/' + time.strftime("%Y%m%d-%H%M%S") + '/train',
+  timestamp = time.strftime("%Y%m%d-%H%M%S")
+  train_writer = tf.summary.FileWriter(FLAGS.summaries_dir + '/' + timestamp + '/train',
                                        sess.graph)
-  validation_writer = tf.summary.FileWriter(FLAGS.summaries_dir + '/' + time.strftime("%Y%m%d-%H%M%S") + '/validation')
+  validation_writer = tf.summary.FileWriter(FLAGS.summaries_dir + '/' + timestamp + '/validation')
 
   # Set up all our weights to their initial default values.
   init = tf.global_variables_initializer()
