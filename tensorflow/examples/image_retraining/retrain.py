@@ -101,6 +101,8 @@ MODEL_INPUT_DEPTH = 3
 JPEG_DATA_TENSOR_NAME = 'DecodeJpeg/contents:0'
 RESIZED_INPUT_TENSOR_NAME = 'ResizeBilinear:0'
 MAX_NUM_IMAGES_PER_CLASS = 2 ** 27 - 1  # ~134M
+TIMESTAMP = time.strftime("%Y%m%d-%H%M%S")
+
 
 
 def create_image_lists(image_dir, testing_percentage, validation_percentage):
@@ -814,10 +816,9 @@ def main(_):
 
   # Merge all the summaries and write them out to /tmp/retrain_logs (by default)
   merged = tf.summary.merge_all()
-  timestamp = time.strftime("%Y%m%d-%H%M%S")
-  train_writer = tf.summary.FileWriter(FLAGS.summaries_dir + '/' + timestamp + '/train',
+  train_writer = tf.summary.FileWriter(FLAGS.summaries_dir + '/' + TIMESTAMP + '/train',
                                        sess.graph)
-  validation_writer = tf.summary.FileWriter(FLAGS.summaries_dir + '/' + timestamp + '/validation')
+  validation_writer = tf.summary.FileWriter(FLAGS.summaries_dir + '/' + TIMESTAMP + '/validation')
 
   # Set up all our weights to their initial default values.
   init = tf.global_variables_initializer()
@@ -921,13 +922,13 @@ if __name__ == '__main__':
   parser.add_argument(
       '--output_graph',
       type=str,
-      default='/tmp/output_graph.pb',
+      default='/tmp/output_graph' + TIMESTAMP + '.pb',
       help='Where to save the trained graph.'
   )
   parser.add_argument(
       '--output_labels',
       type=str,
-      default='/tmp/output_labels.txt',
+      default='/tmp/output_labels' + TIMESTAMP + '.txt',
       help='Where to save the trained graph\'s labels.'
   )
   parser.add_argument(
