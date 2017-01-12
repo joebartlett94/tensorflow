@@ -761,9 +761,12 @@ def add_evaluation_step(result_tensor, ground_truth_tensor):
 
 def main(_):
   # Setup the directory we'll write summaries to for TensorBoard
-  if tf.gfile.Exists(FLAGS.summaries_dir):
-    tf.gfile.DeleteRecursively(FLAGS.summaries_dir)
-  tf.gfile.MakeDirs(FLAGS.summaries_dir)
+  # Modified so as not to delete - Logs stored in timestamped dir
+  #if tf.gfile.Exists(FLAGS.summaries_dir):
+  #  tf.gfile.DeleteRecursively(FLAGS.summaries_dir)
+  #tf.gfile.MakeDirs(FLAGS.summaries_dir)
+  if !tf.gfile.Exists(FLAGS.summaries_dir):
+    tf.gfile.MakeDirs(FLAGS.summaries_dir)
 
   # Set up the pre-trained graph.
   maybe_download_and_extract()
