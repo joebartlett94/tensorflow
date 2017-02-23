@@ -770,7 +770,7 @@ def main(_):
   #if tf.gfile.Exists(FLAGS.summaries_dir):
   #  tf.gfile.DeleteRecursively(FLAGS.summaries_dir)
   #tf.gfile.MakeDirs(FLAGS.summaries_dir)
-  if not tf.gfile.Exists(FLAGS.summaries_dir):
+  if !tf.gfile.Exists(FLAGS.summaries_dir):
     tf.gfile.MakeDirs(FLAGS.summaries_dir)
 
   # Set up the pre-trained graph.
